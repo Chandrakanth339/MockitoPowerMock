@@ -1,11 +1,17 @@
 package mockitotest;
 
+import static org.hamcrest.CoreMatchers.hasItem;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -22,6 +28,9 @@ public class MockitoVerify {
 
 	@InjectMocks
 	public SuperClass2 superClass2;
+
+	@Captor
+	public ArgumentCaptor<List<String>> argumentCaptor;
 
 	@Ignore
 	@Test
@@ -84,6 +93,7 @@ public class MockitoVerify {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void testVerifyDiffScenarios() {
 
@@ -110,6 +120,18 @@ public class MockitoVerify {
 		// To verify that a partiular method is called by atmost number of times
 		// specified
 		Mockito.verify(superClass, Mockito.atMost(3)).getString();
+	}
+
+	@Test
+	public void argumentCaptor() {
+		List<String> newList = Arrays.asList("a", "b");
+		final List<String> mockedList = Mockito.mock(List.class);
+		mockedList.addAll(newList);
+
+		Mockito.verify(mockedList).addAll(argumentCaptor.capture());
+
+		final List<String> argList = argumentCaptor.getValue();
+		Assert.assertThat(argList, hasItem("a"));
 
 	}
 
