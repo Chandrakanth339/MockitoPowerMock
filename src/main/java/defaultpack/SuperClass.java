@@ -4,6 +4,9 @@ public class SuperClass {
 
 	private String string;
 
+	private SuperClass2 superClass2;
+	
+	
 	public void setString(String superClass) {
 		this.string = superClass;
 	}
