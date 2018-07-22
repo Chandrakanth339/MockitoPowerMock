@@ -71,6 +71,7 @@ public class MockitoVerify {
 		Assert.assertEquals(0, c.compareTo(new SuperClass()));
 	}
 
+	@Ignore
 	@Test
 	public void testThrowException() {
 
@@ -81,6 +82,35 @@ public class MockitoVerify {
 		} catch (Exception e) {
 			//
 		}
+	}
+
+	@Test
+	public void testVerifyDiffScenarios() {
+
+		Mockito.when(superClass.getMethod()).thenReturn("nullValue");
+
+		// No interactions were made within this test method above the Line:93
+		Mockito.verifyZeroInteractions(superClass);
+		superClass.getMethod();
+
+		// Throws NoInteractionsWanted exception as an interaction of mock object
+		// occured@Line 94
+//		Mockito.verifyZeroInteractions(superClass);
+
+		// Alternative to method verifyZeroInteractions(Object obj)
+		Mockito.verify(superClass, Mockito.never()).getString();
+		// To Verify that the particular method is called atleast once
+		Mockito.verify(superClass, Mockito.atLeastOnce()).getMethod();
+
+		// To verify that a particular method is called atleast by no. of times
+		// specified
+		Mockito.verify(superClass, Mockito.atLeast(3)).getString();
+		// To verify that a particular method is called times mentioned
+		Mockito.verify(superClass, Mockito.times(3)).getString();
+		// To verify that a partiular method is called by atmost number of times
+		// specified
+		Mockito.verify(superClass, Mockito.atMost(3)).getString();
+
 	}
 
 }
