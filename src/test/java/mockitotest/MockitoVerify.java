@@ -22,8 +22,7 @@ public class MockitoVerify {
 
 	@InjectMocks
 	public SuperClass2 superClass2;
-	
-	
+
 	@Ignore
 	@Test
 	public void testVerify() {
@@ -73,10 +72,15 @@ public class MockitoVerify {
 	}
 
 	@Test
-	public void testThrowException() throws Exception{
-		Properties mockObj = Mockito.mock(Properties.class);
-		Mockito.doThrow(Exception.class).when(mockObj.getProperty("av"));
-		mockObj.getProperty("av");
+	public void testThrowException() {
+
+		try {
+			Properties mockObj = Mockito.mock(Properties.class);
+			Mockito.when(mockObj.getProperty("av")).thenThrow(Exception.class);
+			mockObj.getProperty("av");
+		} catch (Exception e) {
+			//
+		}
 	}
 
 }
