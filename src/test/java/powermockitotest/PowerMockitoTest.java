@@ -13,11 +13,15 @@ import powerMockPackage.PowerMockitoClass;
 public class PowerMockitoTest {
 
 	@Test
-	public void powerMockitoTest() throws Exception {
+	public void verifyNew() throws Exception {
 		PowerMockitoClass pmClass = PowerMockito.mock(PowerMockitoClass.class);
 		PowerMockito.whenNew(PowerMockitoClass.class).withNoArguments().thenReturn(pmClass);
 		PowerMockitoClass powerMockitoClass = new PowerMockitoClass();
 		PowerMockito.verifyNew(PowerMockitoClass.class).withNoArguments();
 	}
 
+	@Test
+	public void verifyStatic() throws Exception {
+
+	}
 }

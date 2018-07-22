@@ -6,4 +6,9 @@ public class PowerMockitoClass {
 
 	}
 	
+	
+	public static String method(String field) {
+		return "";
+	}
+	
 }
