@@ -1,4 +1,4 @@
-package defaultpack;
+package mockPackage;
 
 public class SuperClass {
 

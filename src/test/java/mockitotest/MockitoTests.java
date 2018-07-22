@@ -17,11 +17,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import defaultpack.SuperClass;
-import defaultpack.SuperClass2;
+import mockPackage.SuperClass;
+import mockPackage.SuperClass2;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MockitoVerify {
+public class MockitoTests {
 
 	@Mock
 	public SuperClass superClass;
@@ -127,7 +127,7 @@ public class MockitoVerify {
 		List<String> newList = Arrays.asList("a", "b");
 		final List<String> mockedList = Mockito.mock(List.class);
 		mockedList.addAll(newList);
-
+		
 		Mockito.verify(mockedList).addAll(argumentCaptor.capture());
 
 		final List<String> argList = argumentCaptor.getValue();
